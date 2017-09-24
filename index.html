@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <title>Kill me.</title>
+</head>
+
+<body>
+  <h1 id="numClients">Clients connected: 0</h1>
+  <textarea id="text"></textarea>
+  <button onclick="btnOnclick()">Send</button>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+  function onChangeNumClients(num)
+  {
+    document.getElementById("numClients").innerHTML = "Clients connected: " + num;
+  }
+
+  var socket = io();
+  socket.on("data", function(msg)
+  {
+    onChangeNumClients(msg);
+  });
+
+  function btnOnclick()
+  {
+    socket.emit("send_synth", document.getElementById('text').value);
+  }
+
+</script>
+</html>

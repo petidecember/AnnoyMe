@@ -1,5 +1,6 @@
 var app = require('express')();
-var io = require('socket.io')(http);
+var server = require('http').Server(app);
+var io = require('socket.io')(app);
 
 var numClients = 0;
 
@@ -25,6 +26,6 @@ io.on('connection', function(socket){
   });
 });
 
-app.listen(3000, function(){
+server.listen(3000, function(){
   console.log('listening on *:3000');
 });

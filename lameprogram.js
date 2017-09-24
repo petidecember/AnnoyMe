@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 var numClients = 0;
 
 app.get('/', function(req, res){
-  res.render(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(socket){

@@ -1,13 +1,51 @@
 <html>
-
 <head>
   <title>Kill me.</title>
+  <style>
+  * {
+    font-family: "Georgia", serif;
+  }
+  #title
+  {
+    font-size: 64px;
+    margin-top: 128px;
+    margin-bottom: 16px;
+  }
+  #desc
+  {
+    font-size: 16px;
+    margin-bottom: 64px;
+  }
+  #text
+  {
+    resize: none;
+    width: 55%;
+    height: 4em;
+    font-size: 24px;
+  }
+  #btn
+  {
+    padding: 6px 16px;
+    font-size: 32px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #6496c8;
+    text-shadow: -1px 1px #417cb8;
+  }
+  </style>
 </head>
 
-<body>
-  <h1 id="numClients">Clients connected: 0</h1>
-  <textarea id="text"></textarea>
-  <button onclick="btnOnclick()">Send</button>
+<body bgcolor="lightgray">
+  <div align="center">
+    <p id="title">Annoy Me!</p>
+    <p id="desc">using messages played by a TTS C# client</p>
+    <h1 id="numClients">Clients connected: 0</h1>
+
+    <textarea id="text" placeholder="Annoy Me!" autofocus="1"></textarea>
+    <br>
+    <button id="btn" onclick="btnOnclick()">Annoy</button>
+  </div>
 </body>
 
 <script src="/socket.io/socket.io.js"></script>

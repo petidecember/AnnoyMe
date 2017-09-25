@@ -3,6 +3,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var numClients = 0;
+var messages = '';
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -11,21 +12,24 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   numClients++;
   console.log('a user connected');
-  io.emit("data", numClients);
+  io.emit('numClients', numClients);
+  io.emit('messages', messages);
 
   socket.on('disconnect', function(){
     numClients--;
     console.log('user disconnected');
-    socket.broadcast.emit("data", numClients);
+    socket.broadcast.emit('numClients', numClients);
   });
 
-  socket.on("send_synth", function(data)
+  socket.on('send_synth', function(data)
   {
-    //console.log(data);
-    socket.broadcast.emit("synth", data);
+    data = data + '\n';
+    messages += data;
+    
+    io.emit('synth', data);
   });
 });
 
-server.listen(process.env.PORT, function(){
-  console.log('listening on *:' + process.env.PORT);
+server.listen(process.env.PORT || 3000, function(){
+  console.log('listening on *:' + (process.env.PORT || 3000));
 });

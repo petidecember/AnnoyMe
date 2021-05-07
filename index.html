@@ -77,20 +77,12 @@
   }
 
   var socket = io();
-  socket.on('numClients', function(msg)
-  {
-    onNumClients(msg);
-  });
 
-  socket.on('messages', function(msg)
-  {
-    onMessages(msg);
-  });
+  socket.on('numClients', onNumClients);
 
-  socket.on('synth', function(msg)
-  {
-    onSynth(msg);
-  });
+  socket.on('messages', onMessages);
+
+  socket.on('synth', onSynth);
 
   function btnOnclick()
   {

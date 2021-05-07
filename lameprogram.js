@@ -12,8 +12,8 @@ app.get('/', function(req, res){
 io.on('connection', function(socket){
   numClients++;
   console.log('a user connected');
-  io.emit('numClients', numClients);
-  io.emit('messages', messages);
+  socket.emit('numClients', numClients);
+  socket.emit('messages', messages);
 
   socket.on('disconnect', function(){
     numClients--;

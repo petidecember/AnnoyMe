@@ -1,0 +1,2 @@
+python-socketio==5.0.4
+pyttsx3==2.90

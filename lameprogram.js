@@ -2,8 +2,8 @@ var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
-var numClients = 0;
-var messages = '';
+let numClients = 0;
+let messages = [];
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
@@ -23,8 +23,7 @@ io.on('connection', function(socket){
 
   socket.on('send_synth', function(data)
   {
-    data = data + '\n';
-    messages += data;
+    messages.push(data);
     
     io.emit('synth', data);
   });

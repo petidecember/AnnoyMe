@@ -66,14 +66,19 @@
     document.getElementById('numClients').innerHTML = 'Clients connected: ' + msg;
   }
 
-  function onMessages(msg)
+  function onMessages(msgs)
   {
-    document.getElementById('messages').value = msg;
+    let acc = '';
+    for(msg of msgs) {
+      acc += msg + '\n';
+    }
+    acc.trimRight();
+    document.getElementById('messages').value = acc;
   }
 
   function onSynth(msg)
   {
-    document.getElementById('messages').value += msg;
+    document.getElementById('messages').value += msg + '\n';
   }
 
   var socket = io();
